@@ -1,0 +1,33 @@
+#################################################
+Open commandline terminal
+cd <path to exercise folder>
+
+#################################################
+# Create conda environment with all required packages - choose depending on your OS
+conda env create -f <path>/environment_LINUX.yml
+
+# Activate the newly created environment
+conda activate env_PY2
+
+#################################################
+# install snappy - only possible if SNAP Toolbox available. 
+# All steps must be run in commandline terminal where the new environment is activated
+
+# follow instructions here:  https://senbox.atlassian.net/wiki/spaces/SNAP/pages/50855941/Configure+Python+to+use+the+SNAP-Python+snappy+interface
+
+#################################################
+# Open Jupyter Lab 
+jupyter lab
+
+###################
+# NOTE for MacOS users: snappy can not be installed on MacOS - use the bands.txt or bands10.txt to load the band names corresponding to the preprocessed stacks (downloadable from the ARSET event website). The code to install load the names to list is bellow (replace code in second cell of part 3): 
+
+
+# Get list of band names, uses snappy package 
+#prep_vis = snappy.ProductIO.readProduct(S1_S2_stack)
+#bands = list(prep_vis.getBandNames())
+my_file = open("bands.txt", "r") 
+content = my_file.read()
+content = content.replace('\n', '').replace('[', '').replace(']', '').replace("'", "").replace(' ', '')
+bands = content.split(",")
+my_file.close()
